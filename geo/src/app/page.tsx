@@ -1,10 +1,12 @@
-import GoogleMapComponent from "../app/googlemaps";
-
+import { MapComponent } from "../app/googlemaps";
+import { MapProvider } from "../providers/map-provider";
 export default function Home() {
   return (
     <div>
-      <h1 className="text-center text-2xl font-bold mb-4">World Map</h1>
-      <GoogleMapComponent />
+      <MapProvider>
+      <MapComponent/>
+    </MapProvider>
+     
     </div>
   );
 }

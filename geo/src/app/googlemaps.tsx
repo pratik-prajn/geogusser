@@ -1,22 +1,42 @@
-"use client";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+'use client'
 
-const containerStyle = {
-  width: "100%",
-  height: "500px",
+import { GoogleMap } from "@react-google-maps/api";
+
+const defaultMapContainerStyle = {
+    width: '100%',
+    height: '100vh',
+    borderRadius: '15px 0px 0px 15px',
 };
 
-const center = {
-  lat: 0, // Latitude (equator)
-  lng: 0, // Longitude (Greenwich)
+
+const defaultMapCenter = {
+    lat: 28.5946473,
+    lng: 77.3825407
+}
+
+
+const defaultMapZoom = 18
+
+
+const defaultMapOptions = {
+    zoomControl: true,
+    tilt: 0,
+    gestureHandling: 'auto',
+    mapTypeId: 'satellite',
 };
 
-const GoogleMapComponent = () => {
-  return (
-    <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={2} />
-    </LoadScript>
-  );
+const MapComponent = () => {
+    return (
+        <div className="w-full">
+            <GoogleMap
+                mapContainerStyle={defaultMapContainerStyle}
+                center={defaultMapCenter}
+                zoom={defaultMapZoom}
+                options={defaultMapOptions}
+            >
+            </GoogleMap>
+        </div>
+    )
 };
 
-export default GoogleMapComponent;
+export { MapComponent };
