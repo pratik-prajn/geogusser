@@ -2,6 +2,24 @@
 
 import { GoogleMap, StreetViewPanorama } from '@react-google-maps/api';
 import MiniMap from './components/MiniMap';
+import locationsData from './data/locations.json';
+
+interface Location {
+    name: string;
+    state: string;
+    country: string;
+    coordinates: {
+        latitude: number;
+        longitude: number;
+    };
+}
+
+const getRandomLocation = (): Location => {
+    const locations = locationsData.locations;
+    return locations[Math.floor(Math.random() * locations.length)];
+};
+
+const randomLocation = getRandomLocation();
 
 const defaultMapContainerStyle = {
     width: '100%',
@@ -24,8 +42,8 @@ const defaultMapOptions = {
 };
 
 const defaultStreetViewPosition = {
-    lat: 28.5946473,
-    lng: 77.3825407  
+    lat: randomLocation.coordinates.latitude,
+    lng: randomLocation.coordinates.longitude
 };
 
 const defaultStreetViewOptions = {

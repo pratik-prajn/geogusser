@@ -1,0 +1,94 @@
+{
+    "locations": [
+        {
+            "name": "Location 1",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 28.5932284,
+                "longitude": 77.3816964
+            }
+        },
+        {
+            "name": "Location 2",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 23.8404337,
+                "longitude": 70.1847754
+            }
+        },
+        {
+            "name": "Location 3",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 32.3549957,
+                "longitude": 77.1300111
+            }
+        },
+        {
+            "name": "Location 4",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 32.353588,
+                "longitude": 77.1302329
+            }
+        },
+        {
+            "name": "Location 5",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 9.1504366,
+                "longitude": 79.4492887
+            }
+        },
+        {
+            "name": "Location 6",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 12.027363,
+                "longitude": 93.0040971
+            }
+        },
+        {
+            "name": "Location 7",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 10.8677987,
+                "longitude": 72.1935714
+            }
+        },
+        {
+            "name": "Location 8",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 27.0570779,
+                "longitude": 88.241388
+            }
+        },
+        {
+            "name": "Location 9",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 26.9952365,
+                "longitude": 88.2856001
+            }
+        },
+        {
+            "name": "Location 10",
+            "state": "India",
+            "country": "India",
+            "coordinates": {
+                "latitude": 28.5448114,
+                "longitude": 77.1942791
+            }
+        }
+    ]
+}
