@@ -32,7 +32,7 @@ const defaultMapCenter = {
     lng: 77.3825407
 }
 
-const defaultMapZoom = 18
+const defaultMapZoom = 0
 
 const defaultMapOptions = {
     zoomControl: true,
@@ -71,16 +71,7 @@ const MapComponent = () => {
                 >
                     <StreetViewPanorama
                         position={defaultStreetViewPosition}
-                        options={{
-                            ...defaultStreetViewOptions,
-                            styles: [
-                                {
-                                    featureType: "all",
-                                    elementType: "all",
-                                    stylers: [{ invert_lightness: true }]
-                                }
-                            ]
-                        }}
+                        options={defaultStreetViewOptions}
                     />
                 </GoogleMap>
             </div>

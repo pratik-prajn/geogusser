@@ -1,3 +1,8 @@
+"use client";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { useUser } from "@clerk/nextjs";
+
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useState } from 'react';
 
@@ -52,6 +57,19 @@ const miniMapOptions = {
 };
 
 const MiniMap = ({ streetViewPosition }: MiniMapProps) => {
+    const { user } = useUser();
+    const updateUserScore = useMutation(api.scores.updateScore);
+    
+    const handleSubmitGuess = async (distance: number) => {
+        if (user && distance) {
+            await updateUserScore({
+                userId: user.id,
+                name: user.firstName || "Anonymous",
+                distance: parseFloat(distance)
+            });
+        }
+    };
+
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [hasGuessed, setHasGuessed] = useState(false);
     const [distance, setDistance] = useState(null);
@@ -62,13 +80,16 @@ const MiniMap = ({ streetViewPosition }: MiniMapProps) => {
             const lat = event.latLng.lat().toFixed(4);
             const lng = event.latLng.lng().toFixed(4);
             setSelectedLocation({ lat, lng });
-            setHasGuessed(true);
             
-            const dist = calculateDistance(
-                { lat: parseFloat(lat), lng: parseFloat(lng) },
-                streetViewPosition
-            );
-            setDistance(dist);
+            if (streetViewPosition) {
+                const dist = calculateDistance(
+                    { lat: parseFloat(lat), lng: parseFloat(lng) },
+                    streetViewPosition
+                );
+                setDistance(dist);
+                handleSubmitGuess(dist);
+                setHasGuessed(true);
+            }
         }
     };
 
