@@ -23,7 +23,7 @@ const randomLocation = getRandomLocation();
 
 const defaultMapContainerStyle = {
     width: '100%',
-    height: '100vh',
+    height: '90vh',
     borderRadius: '15px 0px 0px 15px',
 };
 

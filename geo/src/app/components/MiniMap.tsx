@@ -46,7 +46,7 @@ const miniMapOptions = {
     zoomControl: false,
     streetViewControl: false,
     mapTypeControl: false,
-    draggable: true,
+    draggable: true, // Enable dragging
     clickableIcons: false,
     zoom: 3.5
 };
