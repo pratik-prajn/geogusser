@@ -65,29 +65,34 @@ const MiniMap = ({ streetViewPosition }: MiniMapProps) => {
             await updateUserScore({
                 userId: user.id,
                 name: user.firstName || "Anonymous",
-                distance: parseFloat(distance)
+                distance: distance
             });
         }
     };
 
-    const [selectedLocation, setSelectedLocation] = useState(null);
+    const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
     const [hasGuessed, setHasGuessed] = useState(false);
-    const [distance, setDistance] = useState(null);
+    const [distance, setDistance] = useState<string | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const handleMapClick = (event) => {
-        if (!hasGuessed) {
-            const lat = event.latLng.lat().toFixed(4);
-            const lng = event.latLng.lng().toFixed(4);
-            setSelectedLocation({ lat, lng });
+    interface Location {
+        lat: string;
+        lng: string;
+    }
+
+    const handleMapClick = (event: google.maps.MapMouseEvent): void => {
+        if (!hasGuessed && event.latLng) {
+            const lat: string = event.latLng.lat().toFixed(4);
+            const lng: string = event.latLng.lng().toFixed(4);
+            setSelectedLocation({ lat, lng } as Location);
             
             if (streetViewPosition) {
-                const dist = calculateDistance(
+                const dist: string = calculateDistance(
                     { lat: parseFloat(lat), lng: parseFloat(lng) },
                     streetViewPosition
                 );
                 setDistance(dist);
-                handleSubmitGuess(dist);
+                handleSubmitGuess(parseFloat(dist));
                 setHasGuessed(true);
             }
         }

@@ -29,10 +29,10 @@ const defaultMapContainerStyle = {
 
 const defaultMapCenter = {
     lat: 28.5946473,
-    lng: 77.3825407
-}
+    lng: 77.3825407,
+};
 
-const defaultMapZoom = 0
+const defaultMapZoom = 0;
 
 const defaultMapOptions = {
     zoomControl: true,
@@ -43,10 +43,11 @@ const defaultMapOptions = {
 
 const defaultStreetViewPosition = {
     lat: randomLocation.coordinates.latitude,
-    lng: randomLocation.coordinates.longitude
+    lng: randomLocation.coordinates.longitude,
 };
 
 const defaultStreetViewOptions = {
+  position: defaultStreetViewPosition, // Moved position here
   addressControl: false,
   fullscreenControl: false,
   linksControl: false,
@@ -56,7 +57,7 @@ const defaultStreetViewOptions = {
   enableCloseButton: false,
   motionTracking: false,
   motionTrackingControl: false,
-  visible: true
+  visible: true,
 };
 
 const MapComponent = () => {
@@ -70,14 +71,13 @@ const MapComponent = () => {
                     options={defaultMapOptions}
                 >
                     <StreetViewPanorama
-                        position={defaultStreetViewPosition}
-                        options={defaultStreetViewOptions}
+                        options={defaultStreetViewOptions} // Only options prop now
                     />
                 </GoogleMap>
             </div>
             <MiniMap streetViewPosition={defaultStreetViewPosition} />
         </>
-    )
+    );
 };
 
 export { MapComponent };
