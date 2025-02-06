@@ -2,9 +2,7 @@
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { FaTrophy } from 'react-icons/fa';
-import { MapComponent } from "../app/googlemaps";
-import { MapProvider } from "../providers/map-provider";
-import Navbar from "./components/Navbar";
+
 import Link from 'next/link';
 import { UserButton } from "@clerk/nextjs";
 
@@ -20,7 +18,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="container mx-auto flex flex-col items-center justify-center min-h-[80vh] text-center px-4 max-w-7xl">
+      <main className="container mx-auto corner-blur flex flex-col items-center justify-center min-h-[80vh] text-center px-4 max-w-7xl">
         <h1 className="text-6xl font-bold mb-12">
           Explore India
         </h1>
@@ -56,6 +54,23 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full overflow-hidden mt-16">
+          <div className="slider-track">
+            <div className="animate-scroll">
+              {[...Array(4)].flatMap(() => [
+                "Adventure", "Discovery", "Heritage", "Culture", "Landmarks",
+                "Temples", "Palaces", "Mountains", "Rivers", "Traditions"
+              ]).map((word, index) => (
+                <span 
+                  key={index} 
+                  className="inline-block px-8 text-2xl font-medium text-gray-300"
+                >
+                  {word}
+                </span>
+              ))}
             </div>
           </div>
         </div>
