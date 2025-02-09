@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ROUND_TIME = 45;
@@ -13,7 +13,7 @@ interface GameTimerProps {
 
 const GameTimer = ({ isActive, onTimeUp, onScoreUpdate }: GameTimerProps) => {
     const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
-    const [showBonus, setShowBonus] = useState(false);
+    const [showBonus] = useState(false);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
@@ -24,17 +24,13 @@ const GameTimer = ({ isActive, onTimeUp, onScoreUpdate }: GameTimerProps) => {
         } else if (timeLeft === 0) {
             onTimeUp();
         }
-        return () => clearInterval(timer);
-    }, [timeLeft, isActive]);
+        return () => {
+            if (timer) clearInterval(timer);
+        };
+    }, [timeLeft, isActive, onTimeUp]);
 
     const calculateBonus = (remainingTime: number) => {
         return Math.round(remainingTime * BONUS_MULTIPLIER);
-    };
-
-    const handleGuessSubmit = () => {
-        const bonus = calculateBonus(timeLeft);
-        setShowBonus(true);
-        onScoreUpdate(bonus);
     };
 
     return (
@@ -59,5 +55,7 @@ const GameTimer = ({ isActive, onTimeUp, onScoreUpdate }: GameTimerProps) => {
         </div>
     );
 };
+
+
 
 export default GameTimer;

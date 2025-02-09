@@ -2,18 +2,24 @@
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
-
 import { GoogleMap, Marker, Polyline } from '@react-google-maps/api';
 import { useState } from 'react';
 
-interface MiniMapProps {
-    streetViewPosition: {
-        lat: number;
-        lng: number;
-    };
+interface Location {
+  lat: number;
+  lng: number;
 }
 
-const calculateDistance = (point1: any, point2: any) => {
+interface MiniMapProps {
+  streetViewPosition: Location;
+}
+
+interface GuessLocation {
+  lat: string;
+  lng: string;
+}
+
+const calculateDistance = (point1: Location, point2: Location): string => {
     const R = 6371; 
     const dLat = (point2.lat - point1.lat) * Math.PI / 180;
     const dLon = (point2.lng - point1.lng) * Math.PI / 180;
@@ -56,7 +62,7 @@ const miniMapOptions = {
     zoom: 3.5
 };
 
-const MiniMap = ({ streetViewPosition }: MiniMapProps) => {
+const MiniMap: React.FC<MiniMapProps> = ({ streetViewPosition }) => {
     const { user } = useUser();
     const updateUserScore = useMutation(api.scores.updateScore);
     
@@ -70,21 +76,16 @@ const MiniMap = ({ streetViewPosition }: MiniMapProps) => {
         }
     };
 
-    const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
-    const [hasGuessed, setHasGuessed] = useState(false);
+    const [selectedLocation, setSelectedLocation] = useState<GuessLocation | null>(null);
+    const [hasGuessed, setHasGuessed] = useState<boolean>(false);
     const [distance, setDistance] = useState<string | null>(null);
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    interface Location {
-        lat: string;
-        lng: string;
-    }
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     const handleMapClick = (event: google.maps.MapMouseEvent): void => {
         if (!hasGuessed && event.latLng) {
             const lat: string = event.latLng.lat().toFixed(4);
             const lng: string = event.latLng.lng().toFixed(4);
-            setSelectedLocation({ lat, lng } as Location);
+            setSelectedLocation({ lat, lng } as GuessLocation);
             
             if (streetViewPosition) {
                 const dist: string = calculateDistance(

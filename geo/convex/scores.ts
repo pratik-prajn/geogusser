@@ -90,7 +90,7 @@ export const getTopScores = query({
   handler: async (ctx) => {
     return await ctx.db
       .query("scores")
-      .order("asc", (q) => q.field("score"))
+      .order("desc", (q) => q.field("score"))
       .take(3);
   },
 });
