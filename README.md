@@ -37,7 +37,7 @@ This is a GeoGuessr-inspired game where players are placed in a random location 
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
    CLERK_SECRET_KEY=your-clerk-secret-key
    NEXT_PUBLIC_CONVEX_URL=your-convex-url
-   GOOGLE_MAPS_API_KEY=your-google-maps-api-key  # If using Google Maps
+   GOOGLE_MAPS_API_KEY=your-google-maps-api-key
    ```
 
 4. **Start the development server:**
