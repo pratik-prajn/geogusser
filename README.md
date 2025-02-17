@@ -52,15 +52,6 @@ This is a GeoGuessr-inspired game where players are placed in a random location 
 4. Submit your guess and receive a score based on accuracy.
 5. Compete with friends and track scores on the leaderboard!
 
-## 📜 License
-This project is open-source and available under the MIT License.
 
-## 🙌 Contributing
-Contributions are welcome! If you have ideas for improvements, feel free to fork the repo and submit a PR.
 
-## 📩 Contact
-For any queries, reach out to **[your email]** or open an issue in the repository.
-
----
-Happy Guessing! 🎯
 
